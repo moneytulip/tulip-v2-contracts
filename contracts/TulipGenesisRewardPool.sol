@@ -32,7 +32,7 @@ contract TulipGenesisRewardPool {
     }
 
     IERC20 public tulip;
-    address public wRose;
+    address public wRose = 0x21C718C22D52d0F3a789b752D4c2fD5908a8A733;
 
     // Info of each pool.
     PoolInfo[] public poolInfo;
@@ -60,12 +60,10 @@ contract TulipGenesisRewardPool {
 
     constructor(
         address _tulip,
-        address _wRose,
         uint256 _poolStartTime
     ) public {
         require(block.timestamp < _poolStartTime, "late");
         if (_tulip != address(0)) tulip = IERC20(_tulip);
-        if (_wRose != address(0)) wRose = _wRose;
         operator = msg.sender;
         poolStartTime = _poolStartTime;
         poolEndTime = poolStartTime + runningTime;

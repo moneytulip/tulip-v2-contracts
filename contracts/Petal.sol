@@ -19,12 +19,12 @@ import "./owner/Operator.sol";
 contract Petal is ERC20Burnable, Operator {
     using SafeMath for uint256;
 
-    // TOTAL MAX SUPPLY = 70,000 Petal
-    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 59500 ether;
+    // TOTAL MAX SUPPLY = 50,000 Petal
+    uint256 public constant FARMING_POOL_REWARD_ALLOCATION = 39000 ether;
     uint256 public constant DEV_FUND_POOL_ALLOCATION = 5500 ether;
     uint256 public constant COMMUNITY_FUND_POOL_ALLOCATION = 5500 ether;
 
-    uint256 public constant VESTING_DURATION = 90 days;
+    uint256 public constant VESTING_DURATION = 365 days;
     uint256 public startTime;
     uint256 public endTime;
 
@@ -32,13 +32,15 @@ contract Petal is ERC20Burnable, Operator {
     uint256 public devFundRewardRate;
 
     address public devFund;
+    address public communityFund;
 
     uint256 public devFundLastClaimed;
+    uint256 public communityFundLastClaimed;
 
     bool public rewardPoolDistributed = false;
 
     constructor(uint _startTime, address _communityFund, address _devFund) public ERC20("PETAL", "PETAL") {
-        _mint(msg.sender, 10 ether); // mint 10 Tulip for initial pools deployment
+        _mint(msg.sender, 1 ether); // mint 10 Petal for initial pools deployment
 
         startTime = _startTime;
         endTime = startTime + VESTING_DURATION;
@@ -54,10 +56,10 @@ contract Petal is ERC20Burnable, Operator {
 
     }
     
-    function setDevFund(address _devFund) external {
-        require(msg.sender == devFund, "!dev");
-        require(_devFund != address(0), "zero");
-        devFund = _devFund;
+    function setCommunityFund(address _communityFund) external {
+        require(msg.sender == communityFund, "!dev");
+        require(_communityFund != address(0), "zero");
+        communityFund = _communityFund;
     }
 
     function setDevFund(address _devFund) external {

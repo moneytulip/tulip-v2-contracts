@@ -89,8 +89,9 @@ contract TulipGenesisRewardPool {
         IERC20 _token,
         bool _withUpdate,
         uint256 _lastRewardTime,
-        uint246 _fee
+        uint256 _fee
     ) public onlyOperator {
+        require(_fee < 500, "max 5% tax");
         checkPoolDuplicate(_token);
         if (_withUpdate) {
             massUpdatePools();
@@ -236,7 +237,7 @@ contract TulipGenesisRewardPool {
         }
         if (_amount > 0) {
             user.amount = user.amount.sub(_amount);
-            tax = _amount.mul(pool.fee).div(10000);
+            uint tax = _amount.mul(pool.fee).div(10000);
             pool.token.safeTransfer(operator, tax);
             if (_amount > tax) {
                 pool.token.safeTransfer(_sender, _amount - tax);

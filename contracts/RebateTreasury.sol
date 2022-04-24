@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
-import "@openzeppelin/contracts-0.8/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts-0.8/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IOracle {
     function update() external;
@@ -101,7 +101,7 @@ contract RebateTreasury is Ownable {
     uint256 public lastBuyback;
     uint256 public buybackAmount = 10 * 1e4;
 
-    address public constant WROSE = 0x21c718c22d52d0f3a789b752d4c2fd5908a8a733;
+    address public constant WROSE = 0x21C718C22D52d0F3a789b752D4c2fD5908a8A733;
     uint256 public constant DENOMINATOR = 1e6;
 
     /*

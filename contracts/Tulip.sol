@@ -69,7 +69,7 @@ contract Tulip is ERC20Burnable, Operator {
     /**
      * @notice Constructs the TULIP ERC-20 contract.
      */
-    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("TULIP", "TULIP") {
+    constructor(uint256 _taxRate, address _taxCollectorAddress) public ERC20("Tulip", "TLP") {
         // Mints 1 TULIP to contract creator for initial pool setup
         require(_taxRate < 10000, "tax equal or bigger to 100%");
         require(_taxCollectorAddress != address(0), "tax collector address must be non-zero address");

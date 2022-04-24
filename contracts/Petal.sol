@@ -39,7 +39,7 @@ contract Petal is ERC20Burnable, Operator {
 
     bool public rewardPoolDistributed = false;
 
-    constructor(uint _startTime, address _communityFund, address _devFund) public ERC20("PETAL", "PETAL") {
+    constructor(uint _startTime, address _communityFund, address _devFund) public ERC20("Petal", "PTL") {
         _mint(msg.sender, 1 ether); // mint 10 Petal for initial pools deployment
 
         startTime = _startTime;
